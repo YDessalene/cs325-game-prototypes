@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Pixel Fighter</title>
+        <title>Pixel Hero</title>
         <script src="phaser.js"></script>
     </head>
     <body>
@@ -17,8 +17,8 @@ function preload () {
     game.load.image('stage','Assets/Backgrounds/stage.png');
     game.load.image('ground','Assets/Backgrounds/platform.png');
     game.load.spritesheet('player','Assets/Characters/player.png', 50, 37, 109);
+
     game.load.spritesheet('bandit','Assets/Characters/Bandit.png', 48, 48, 39);
-    game.load.audio('pokemon','Assets/Sound/pokemon.mp3');
 }
 
 var player;
@@ -33,7 +33,7 @@ var lifeText;
 var timeText;
 var enemyLifeText;
 function create () {
-    var sound = game.add.audio('pokemon');
+
     attackTimer = game.time.create(false);
     attackTimer.loop(1000, canAttackAgain, this);
 

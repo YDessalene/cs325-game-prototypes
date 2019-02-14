@@ -31,7 +31,7 @@ thegame.prototype = {
 		midJump3 = false;
 		midJump4 = false;
 		speed = 150;
-		spawnTime = 5000;
+		spawnTime = 2000;
 	},
 
 	create: function() {
@@ -115,11 +115,11 @@ thegame.prototype = {
 	},
 
 	faster: function() {
-		speed+=25;
+		speed+=50;
 	},
 
 	spawnFireball: function() {
-		fireball = this.game.add.sprite(Math.floor(Math.random()*this.game.world.width), 0, 'fireball');
+		fireball = this.game.add.sprite(Math.floor(Math.random()*this.game.world.width), -300, 'fireball');
 		this.game.physics.arcade.enable(fireball);
 		fireball.scale.setTo(.75,.75);
 		fireball.body.velocity.y = speed;

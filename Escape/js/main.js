@@ -4,5 +4,6 @@ window.onload = function() {
     game.state.add("Boot", bootGame);
     game.state.add("TheGame",startGame);
     game.state.add("GameOver",gameOver);
-    game.state.start("TheGame");
+    game.state.add("Win", winGame);
+    game.state.start("Boot");
 }

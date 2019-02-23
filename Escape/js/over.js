@@ -11,6 +11,6 @@ gameOver.prototype = {
 	},
 
 	restart: function() {
-		this.game.state.start("Boot");
+		this.game.state.start("TheGame");
 	}
 }

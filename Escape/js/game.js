@@ -5,18 +5,23 @@ var pFaceNorth,pFaceSouth,pFaceEast,pFaceWest = false;
 var e1FaceSouth,e2FaceSouth,e3FaceSouth = true;
 var platforms;
 var finishLine, finish;
+var music;
 
 startGame.prototype = {
 	preload: function() {
 		this.game.load.spritesheet('player','assets/Characters/topdown2.png', 48, 50, 48);
 		this.game.load.image('classroom', 'assets/Background/classroom.png');
 		this.game.load.image('wall', 'assets/Background/platform.png');
+		this.game.load.audio('music', 'assets/Audio/pokemon.mp3');
 	},
 
 	create: function() {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		this.game.add.sprite(0,0,'classroom');
+
+		music = this.game.add.audio('music');
+		music.play();
 
 		player = this.game.add.sprite(100, 500, 'player');
 		this.game.physics.arcade.enable(player);

@@ -1,13 +1,13 @@
 var startStage1 = function(game) {};
 var player;
 var music;
-var pFaceNorth,pFaceEast,pFaceSouth,pFaceWest = false;
+var pFaceNorth,pFaceEast,pFaceSouth,pFaceWest;
 var map;
 var floor,wall,colide,cave;
 var platforms, nextStage;
-var start = false;
-var textboxNum = 1;
-var textbox = null;
+var start;
+var textboxNum;
+var textbox;
 var nextText;
 
 startStage1.prototype = {
@@ -24,11 +24,15 @@ startStage1.prototype = {
 		this.game.load.image('textbox1', 'assets/Characters/textbox1.png');
 		this.game.load.image('textbox2', 'assets/Characters/textbox2.png');
 		this.game.load.image('textbox3', 'assets/Characters/textbox3.png');
+
+		start = false;
+		textbox = null;
+		textboxNum = 1;
+		pFaceNorth,pFaceEast,pFaceSouth,pFaceWest = false;
 	},
 
 	create: function() {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
-
 		map = this.game.add.tilemap('map');
 		map.addTilesetImage('Firecave', 'tile1');
 		map.addTilesetImage('ForestCave', 'tile2');

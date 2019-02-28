@@ -48,7 +48,7 @@ startStage2.prototype = {
 
 		fairy = this.game.add.sprite(455, 350, 'fairy');
 		this.game.physics.arcade.enable(fairy);
-		fairy.body.imovable = true;
+		fairy.body.immovable = true;
 		fairy.frame = 50;
 
 		player.animations.add('down', [0,1,2], 10, true);

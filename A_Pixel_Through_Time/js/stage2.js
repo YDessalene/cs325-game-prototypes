@@ -5,7 +5,6 @@ var music;
 var pFaceNorth,pFaceEast,pFaceSouth,pFaceWest = false;
 var map;
 var floor, colide;
-var start = true;
 var nextStage;
 
 startStage2.prototype = {
@@ -49,6 +48,7 @@ startStage2.prototype = {
 
 		fairy = this.game.add.sprite(455, 350, 'fairy');
 		this.game.physics.arcade.enable(fairy);
+		fairy.body.imovable = true;
 		fairy.frame = 50;
 
 		player.animations.add('down', [0,1,2], 10, true);

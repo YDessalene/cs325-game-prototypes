@@ -69,6 +69,7 @@ startStage1.prototype = {
 		this.game.camera.follow(player);
 
 		textbox = this.game.add.sprite(0, 630, 'textbox1');
+		textboxNum++;
 	},
 
 	update: function() {
@@ -89,8 +90,6 @@ startStage1.prototype = {
 			this.movePlayer();
 		else
 			this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.spawnText, this);
-
-		console.log(start);
 	},
 
 	spawnText: function() {

@@ -3,9 +3,7 @@ var startStage2 = function(game) {};
 var player, fairy;
 var music;
 var pFaceNorth,pFaceEast,pFaceSouth,pFaceWest = false;
-var map;
 var floor, colide;
-var nextStage;
 
 startStage2.prototype = {
 
@@ -60,10 +58,10 @@ startStage2.prototype = {
 	    fairy.animations.play('idle');
 		
 		this.game.camera.follow(player);
+		music.resume();
 	},
 
 	update: function() {
-
 		if(this.game.physics.arcade.collide(player, nextStage))
 			this.goStage3();
 
@@ -128,10 +126,7 @@ startStage2.prototype = {
 	},
 
 	goStage2Fight: function() {
-
+		music.stop();
+		this.game.state.start("Stage2Fight");
 	},
-
-	goStage3: function() {
-		this.game.state.start("GameOver");
-	}
 }

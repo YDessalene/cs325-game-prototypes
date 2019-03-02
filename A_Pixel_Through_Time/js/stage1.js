@@ -1,7 +1,7 @@
 var startStage1 = function(game) {};
 var player;
-var music;
-var pFaceNorth,pFaceEast,pFaceSouth,pFaceWest;
+var music, playing;
+var pFaceNorth,pFaceEast,pFaceSouth,pFaceWest = false;
 var map;
 var floor,wall,colide,cave;
 var platforms, nextStage;
@@ -25,10 +25,12 @@ startStage1.prototype = {
 		this.game.load.image('textbox2', 'assets/Characters/textbox2.png');
 		this.game.load.image('textbox3', 'assets/Characters/textbox3.png');
 
+		this.game.load.audio('gamemusic', ['assets/Audio/Scythuz - Her Blade.m4a', 'assets/Audio/Scythuz - Her Blade.ogg']);
+
 		start = false;
 		textbox = null;
 		textboxNum = 1;
-		pFaceNorth,pFaceEast,pFaceSouth,pFaceWest = false;
+		playing = false;
 	},
 
 	create: function() {
@@ -38,6 +40,8 @@ startStage1.prototype = {
 		map.addTilesetImage('ForestCave', 'tile2');
 		map.addTilesetImage('ForestCave2', 'tile3');
 		map.addTilesetImage('ForestCave3', 'tile4');
+
+		music = this.game.add.audio('gamemusic');
 
 		floor = map.createLayer('Background');
 		floor.resizeWorld();
@@ -97,6 +101,10 @@ startStage1.prototype = {
 	},
 
 	spawnText: function() {
+		if(playing == false) {
+			music.play();
+			playing = true;
+		}
 		textbox.kill();
 
 		if(textboxNum == 2) 
@@ -180,6 +188,7 @@ startStage1.prototype = {
 	},
 
 	goStage2: function() {
+		music.pause();
 		this.game.state.start("Stage2");
 	}
 }

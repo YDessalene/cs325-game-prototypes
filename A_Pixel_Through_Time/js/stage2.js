@@ -62,9 +62,10 @@ startStage2.prototype = {
 	},
 
 	update: function() {
-		if(this.game.physics.arcade.collide(player, nextStage))
-			this.goStage3();
+		//if(this.game.physics.arcade.collide(player, nextStage))
+			//this.goStage3();
 
+		this.game.physics.arcade.collide(player, nextStage)
 		if(this.game.physics.arcade.collide(player, fairy))
 			this.goStage2Fight();
 

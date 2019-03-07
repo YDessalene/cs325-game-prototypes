@@ -14,6 +14,9 @@ var playerHealth,enemyHealth;
 
 bootGame.prototype = {
 	preload: function() {
+		preloadBar = this.add.sprite(300, 400, 'loadbar');
+		this.game.load.setPreloadSprite(preloadBar);
+
 		this.game.load.spritesheet('new-player', 'assets/Characters/pre-main-characters.png', 48, 48, 96);
 		this.game.load.spritesheet('player', 'assets/Characters/main-characters.png', 48, 48, 96);
 		this.game.load.spritesheet('player-fighter', 'assets/Characters/player-fight.png', 64, 64, 54);

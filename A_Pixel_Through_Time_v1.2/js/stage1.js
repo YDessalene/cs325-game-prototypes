@@ -64,9 +64,6 @@ startStage1.prototype = {
 
 		if(this.game.physics.arcade.collide(player, entrance)) {
 			music.stop();
-			music = this.game.add.audio('forestmusic');
-			music.volume = .3;
-			music.play();
 			this.game.state.start("Stage2");
 		}
 

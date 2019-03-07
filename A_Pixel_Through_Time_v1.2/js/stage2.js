@@ -83,9 +83,6 @@ startStage2.prototype = {
 
 		if(this.game.physics.arcade.collide(player, fairy)) {
 			music.stop();
-			music = this.game.add.audio('fightmusic');
-			music.volume = .3;
-			music.play();
 			this.game.state.start("Stage2Fight");
 		}
 

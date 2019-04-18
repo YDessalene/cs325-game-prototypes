@@ -1,17 +1,14 @@
-var continueStage2 = function(game) {};
+var startStage4 = function(game) {};
 
-continueStage2.prototype = {
-
+startStage4.prototype = {
 	create: function() {
-		start = false;
+
+		start = true;
 		
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
-		map = this.game.add.tilemap('map2');
+		map = this.game.add.tilemap('map3');
 		map.addTilesetImage('ForestCave', 'tile2');
 		map.addTilesetImage('ForestCave2', 'tile3');
-		map.addTilesetImage('ForestCave3', 'tile5');
-		map.addTilesetImage('ForestCave4', 'tile6');
-		map.addTilesetImage('GiantTree', 'gianttree');
 
 
 		floor = map.createLayer('Floor');
@@ -19,11 +16,6 @@ continueStage2.prototype = {
 
 		overFloor = map.createLayer('Over_Floor');
 		overFloor.resizeWorld();
-
-		colide = map.createLayer('Collision');
-		colide.resizeWorld();
-		map.setCollisionBetween(0,2000,true,colide);
-		//colide.debug = true;
 
 		entrance = map.createLayer('Entrance');
 		entrance.resizeWorld();
@@ -35,7 +27,7 @@ continueStage2.prototype = {
 		map.setCollisionBetween(0,2000,true,exit);
 		//exit.debug = true;
 
-		player = this.game.add.sprite(460, 550, 'new-player');
+		player = this.game.add.sprite(380, 475, 'new-player');
 		this.game.physics.arcade.enable(player);
 		player.body.collideWorldBounds = true;
 		player.frame = 37;
@@ -47,57 +39,36 @@ continueStage2.prototype = {
 	    player.animations.add('right', [24,25,26], 10, true);
 	    player.animations.add('up', [36,37,38], 10, true);
 
-	    colidetop = map.createLayer('Collision_Tops');
-		colidetop.resizeWorld();
-		//colidetop.debug = true;
+	    enemy = this.game.add.sprite(405, 300, 'mini-enemies');
+	    this.game.physics.arcade.enable(enemy);
+	    enemy.body.immovable = true;
 
-		fairy = this.game.add.sprite(460, 500, 'fairy');
-		this.game.physics.arcade.enable(fairy);
-		fairy.body.immovable = true;
-		fairy.frame = 50;
-
-	    fairy.animations.add('idle', [50,51,52], 10, true);
-	    fairy.animations.play('idle');
-		
-		music = this.game.add.audio('forestmusic');
-		music.volume = .3;
-		music.play();
-
-		textboxNum = 4;
-		textbox = this.game.add.sprite(100, 630, 'textbox4');
-		textboxNum++;
+	    enemy.animations.add('idle', [51,52,53], 7, true);
+	    enemy.animations.play('idle');
 	},
 
-	update: function () {
-		this.game.physics.arcade.collide(player, colide);
+	update: function() {
+
+		this.game.physics.arcade.collide(player, exit);
 
 		if(this.game.physics.arcade.collide(player, entrance)) {
-			this.game.state.start("Stage3");
-		}
-
-		if(this.game.physics.arcade.collide(player, exit)) {
 			start = false;
 			player.animations.stop();
-			player.frame = 1;
-			textbox = this.game.add.sprite(100, 750, 'textbox0');			
-			this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.textboxKill, this);
+			//textbox = this.game.add.sprite(100, 430, 'textbox0');			
+			//this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.textboxKill, this);
+			this.game.state.start("Stage5");
 		}
+
+		/*if(this.game.physics.arcade.collide(player, enemy)) {
+			music.stop();
+			music = this.game.add.audio('fightmusic');
+			music.volume = .3;
+			//music.play();
+			this.game.state.start("GameOver");
+		}*/
 
 		if(start)
 			this.movePlayer();
-		else
-			this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.spawnText, this);
-	},
-
-	spawnText: function() {
-		textbox.kill();
-
-		if(textboxNum == 27)
-			start = true;
-		else {
-			textbox = this.game.add.sprite(100, 630, 'textbox'+textboxNum);
-			textboxNum++;
-		}
 	},
 
 	movePlayer: function() {
@@ -154,6 +125,7 @@ continueStage2.prototype = {
 	},
 
 	textboxKill: function() {
+		textbox.visible = false;
 		textbox.kill();
 		start = true;
 	}

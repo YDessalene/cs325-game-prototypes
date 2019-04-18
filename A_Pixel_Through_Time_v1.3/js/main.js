@@ -8,6 +8,8 @@ window.onload = function() {
     game.state.add("Stage2Fight",startStage2Fight);
     game.state.add("Stage2-2",continueStage2);
     game.state.add("Stage3",startStage3);
+    game.state.add("Stage4",startStage4);
+    game.state.add("Stage5",startStage5);
     game.state.add("GameOver",gameOver);
     game.state.start("PreloadBar");
 }

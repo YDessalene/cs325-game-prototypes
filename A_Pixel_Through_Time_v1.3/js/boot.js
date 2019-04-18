@@ -1,6 +1,6 @@
 var bootGame = function(game) {};
 
-var player, fairy;
+var player, fairy, enemy;
 var music, playing;
 var pFaceNorth,pFaceEast,pFaceSouth,pFaceWest = false;
 var map;
@@ -55,6 +55,6 @@ bootGame.prototype = {
 		this.game.load.image('health', 'assets/Background/healthbar.png');
 	},
 	create: function() {
-		this.game.state.start("Stage1");
+		this.game.state.start("Stage3");
 	}
 }

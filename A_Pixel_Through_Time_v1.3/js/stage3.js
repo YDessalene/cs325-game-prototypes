@@ -10,7 +10,6 @@ startStage3.prototype = {
 		map.addTilesetImage('ForestCave', 'tile2');
 		map.addTilesetImage('ForestCave2', 'tile3');
 
-
 		floor = map.createLayer('Floor');
 		floor.resizeWorld();
 
@@ -27,10 +26,10 @@ startStage3.prototype = {
 		map.setCollisionBetween(0,2000,true,exit);
 		//exit.debug = true;
 
-		player = this.game.add.sprite(460, 850, 'new-player');
+		player = this.game.add.sprite(380, 475, 'new-player');
 		this.game.physics.arcade.enable(player);
 		player.body.collideWorldBounds = true;
-		player.frame = 1;
+		player.frame = 37;
 		player.body.setSize(32,12,8,36);
 		this.game.camera.follow(player);
 
@@ -39,7 +38,12 @@ startStage3.prototype = {
 	    player.animations.add('right', [24,25,26], 10, true);
 	    player.animations.add('up', [36,37,38], 10, true);
 
-	    
+	    enemy = this.game.add.sprite(405, 300, 'mini-enemies');
+	    this.game.physics.arcade.enable(enemy);
+	    enemy.body.immovable = true;
+
+	    enemy.animations.add('idle', [3,4,5], 7, true);
+	    enemy.animations.play('idle');
 	},
 
 	update: function() {
@@ -49,17 +53,18 @@ startStage3.prototype = {
 		if(this.game.physics.arcade.collide(player, entrance)) {
 			start = false;
 			player.animations.stop();
-			textbox = this.game.add.sprite(100, 430, 'textbox0');			
-			this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.textboxKill, this);
+			//textbox = this.game.add.sprite(100, 430, 'textbox0');			
+			//this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.textboxKill, this);
+			this.game.state.start("Stage4");
 		}
 
-		if(this.game.physics.arcade.collide(player, fairy)) {
+		/*if(this.game.physics.arcade.collide(player, enemy)) {
 			music.stop();
 			music = this.game.add.audio('fightmusic');
 			music.volume = .3;
-			music.play();
-			this.game.state.start("Stage2Fight");
-		}
+			//music.play();
+			this.game.state.start("GameOver");
+		}*/
 
 		if(start)
 			this.movePlayer();

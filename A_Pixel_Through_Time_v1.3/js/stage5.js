@@ -56,6 +56,7 @@ startStage5.prototype = {
 			player.animations.stop();
 			//textbox = this.game.add.sprite(100, 430, 'textbox0');			
 			//this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.textboxKill, this);
+			music.stop();
 			this.game.state.start("GameOver");
 		}
 
